@@ -4,7 +4,7 @@ using System.Collections;
 public class HorizontalController : MonoBehaviour
 {
     public float distance = 10; // How far you can can drag an object 
-    bool CanRotate;
+    private bool CanRotate;
 
     public void OnMouseDrag()
     {
@@ -12,10 +12,11 @@ public class HorizontalController : MonoBehaviour
         Vector3 objPosition = Camera.main.ScreenToWorldPoint(mousePosition); //Make a Vector 3 value that takes the mouse position relative to your screen
         objPosition.y = transform.position.y; // limit from going to left to right
         transform.position = objPosition; // Transform the object to objPosition
+        CanRotate = true;
+        print("Mouse Drag of Horizontal Platform is True");
     }
 
-
-    public void Rotate(bool CanRotate)
+    public void Rotate()
     {
         if (CanRotate == true)
         {
@@ -33,17 +34,12 @@ public class HorizontalController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            CanRotate = true;
-            print("true");
-        }
         if (Input.GetMouseButtonUp(0))
         {
             CanRotate = false;
-            print("false");
+            print("Mouse Drag of Horizontal Platform is False");
         }
 
-        Rotate(CanRotate);
+        Rotate();
     }
 }

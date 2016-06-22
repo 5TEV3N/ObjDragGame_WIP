@@ -4,7 +4,7 @@ using System.Collections;
 public class VerticalController : MonoBehaviour
 {
     public float distance = 10; // How far you can can drag an object 
-    bool CanRotate;
+    private bool CanRotate;
 
     public void OnMouseDrag()
     {
@@ -12,9 +12,11 @@ public class VerticalController : MonoBehaviour
         Vector3 objPosition = Camera.main.ScreenToWorldPoint(mousePosition); //Make a Vector 3 value that takes the mouse position relative to your screen
         objPosition.x = transform.position.x; // limit from going to left to right
         transform.position = objPosition; // Transform the object to objPosition
+        CanRotate = true;
+        print("Mouse Drag of Vertical Platform is True");
     }
 
-    public void Rotate(bool CanRotate)
+    public void Rotate()
     {
         if (CanRotate == true)
         {
@@ -32,17 +34,12 @@ public class VerticalController : MonoBehaviour
 
     void Update()
     {
-        Rotate(CanRotate);
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            CanRotate = true;
-            print("true");
-        }
         if (Input.GetMouseButtonUp(0))
         {
             CanRotate = false;
-            print("false");
+            print("Mouse Drag of Vertical Platform is False");
         }
+
+        Rotate();
     }
 }
