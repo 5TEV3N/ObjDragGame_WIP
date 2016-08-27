@@ -4,7 +4,12 @@ using System.Collections;
 public class VerticalController : MonoBehaviour
 {
     public float distance = 10; // How far you can can drag an object 
+    public Color highlightedVertical = new Color();
+
     private bool CanRotate;
+    private Color initialColor;
+
+    CursorLockMode clamp;
 
     public void OnMouseDrag()
     {
@@ -15,6 +20,19 @@ public class VerticalController : MonoBehaviour
         CanRotate = true;
         print("Mouse Drag of Vertical Platform is True");
     }
+
+    void OnMouseEnter()
+    {
+        initialColor = GetComponent<Renderer>().material.color;
+        GetComponent<Renderer>().material.color = highlightedVertical;
+
+    }
+
+    void OnMouseExit()
+    {
+        GetComponent<Renderer>().material.color = initialColor;
+    }
+
 
     public void Rotate()
     {

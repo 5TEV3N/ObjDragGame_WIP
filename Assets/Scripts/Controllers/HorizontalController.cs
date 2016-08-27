@@ -4,7 +4,10 @@ using System.Collections;
 public class HorizontalController : MonoBehaviour
 {
     public float distance = 10; // How far you can can drag an object 
+    public Color highlightedHorizontal = new Color();
+
     private bool CanRotate;
+    private Color initialColor;
 
     public void OnMouseDrag()
     {
@@ -14,6 +17,18 @@ public class HorizontalController : MonoBehaviour
         transform.position = objPosition; // Transform the object to objPosition
         CanRotate = true;
         print("Mouse Drag of Horizontal Platform is True");
+    }
+
+    void OnMouseEnter()
+    {
+        initialColor = GetComponent<Renderer>().material.color;
+        GetComponent<Renderer>().material.color = highlightedHorizontal;
+
+    }
+
+    void OnMouseExit()
+    {
+        GetComponent<Renderer>().material.color = initialColor;
     }
 
     public void Rotate()
