@@ -17,13 +17,13 @@ public class HorizontalController : MonoBehaviour
         transform.position = objPosition; // Transform the object to objPosition
         CanRotate = true;
         print("Mouse Drag of Horizontal Platform is True");
+
     }
 
     void OnMouseEnter()
     {
         initialColor = GetComponent<Renderer>().material.color;
         GetComponent<Renderer>().material.color = highlightedHorizontal;
-
     }
 
     void OnMouseExit()
